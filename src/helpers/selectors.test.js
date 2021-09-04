@@ -3,9 +3,11 @@ import { getAppointmentsForDay,getInterview } from "helpers/selectors";
 const state = {
   days: [
     {
-      id: 1,
-      name: "Monday",
-      appointments: [1, 2, 3]
+      "id":1,
+      "name":"Monday",
+      "appointments":[1,2,3,4,5,26,27,28,29,30],
+      "interviewers":[1,2,3,5,6,7,8,13],
+      "spots":9
     },
     {
       id: 2,
