@@ -2,7 +2,7 @@ import React from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList"
-import InterviewerList from "./InterviewerList";
+
 import { useState } from "react";
 import { useEffect } from "react";
 import { getAppointmentsForDay, getInterview,getInterviewersForDay } from "helpers/selectors";
@@ -11,9 +11,9 @@ import axios from "axios";
 
 
 
-export default function Application(props) {
+export default function Application() {
   const [state, setState] = useState({
-    day: "Monday",
+    day: "Friday",
     days: [],
     appointments: {}
   });
@@ -27,34 +27,66 @@ export default function Application(props) {
       setState(prev => ({ ...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     })
   }, []);
-
+  function bookInterview(id, interview) {
+     const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({
+      ...state,
+      appointments
+    });
+    
+     return axios.put(`/api/appointments/${id}`, { interview }).then(res => {
+    }); 
+  }
+  function cancelInterview(id){
+    console.log("delete id=",id);
+    return axios.delete(`/api/appointments/${id}`).then(res => {
+    });
+    
+  }
+   
+  function onEdit(){}
   const appointments = getAppointmentsForDay(state, state.day);
   
   const schedule = appointments.map((appointment) => {
         
     const interview = getInterview(state, appointment.interview);
     let interviewers = getInterviewersForDay(state, state.day)
-    
+   
       if(interview){
         return (
           <Appointment
             key={appointment.id}
             id={appointment.id}
             time={appointment.time}
-            interviewer={interview.interviewer}
+            
+            interview={interview.interviewer}
             student={interview.student}
-            interviewers={interviewers}
+           
+            cancelInterview={cancelInterview}
+            onEdit={onEdit}
+            bookInterview={bookInterview}
           />
+        
         );
       } else{
+        
         return (
+          
           <Appointment
-            key={appointment.id}
-            id={appointment.id}
-            time={appointment.time}
-            interviewer={null}
-            interviewers={interviewers}
-           
+          key={appointment.id}
+          id={appointment.id}
+          time={appointment.time}
+          interview={null}
+          interviewers={interviewers}
+          bookInterview={bookInterview}
+          cancelInterview={cancelInterview}
           />
         );
       }
@@ -70,7 +102,10 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={state.days} day={state.day}  setDay={day=>day}
+          <DayList
+            days={state.days}
+            propDay={state.day}
+            setDay={state.day}
           />
         </nav>
         <img
@@ -79,10 +114,7 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">
-      {schedule}
-
-      </section>
+      <section className="schedule"> {schedule}</section>
     </main>
   );
 }
