@@ -15,10 +15,8 @@ export default function Application() {
   } = useApplicationData();
  
   const appointments = getAppointmentsForDay(state, state.day);
-  
-  const schedule = appointments.map((appointment) => {
-        
-    const interview = getInterview(state, appointment.interview);
+  const schedule = appointments.map((appointment) => {  
+  const interview = getInterview(state, appointment.interview);
     let interviewers = getInterviewersForDay(state, state.day)
    
       if(interview){
@@ -72,7 +70,7 @@ export default function Application() {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule"> {schedule}</section>{" "}
+      <section className="schedule"> {schedule}</section>
     </main>
   );
 }
