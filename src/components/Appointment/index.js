@@ -29,15 +29,14 @@ export default function Appointment(props) {
         if (props.interview === null && mode === SHOW) {
          transition(EMPTY);
         }
-       }, [props.interview, transition, mode]);
+    }, [props.interview, transition, mode]);
     function save(name, interviewer) {
         const interview = {
           student: name,
           interviewer:interviewer.id
         }
      transition(SAVING);
-     props
-     .bookInterview(props.id, interview)
+     props.bookInterview(props.id, interview)
      .then(() => transition(SHOW))
      .catch(error => transition(ERROR_SAVE, true));
     }
@@ -46,15 +45,12 @@ export default function Appointment(props) {
           transition(CONFIRM);
         } else {
             transition(DELETING, true);
-            props
-             .cancelInterview(props.id)
+            props.cancelInterview(props.id)
              .then(() => transition(EMPTY))
              .catch(error => transition(ERROR_DELETE, true));
         }
     }
-   
-    function edit(){
-        
+    function edit(){ 
         transition(EDIT);
     }
     return (
@@ -66,11 +62,9 @@ export default function Appointment(props) {
                 student={props.student}
                 interviewer={props.interview}
                 onDelete={cancel}
-                onEdit={edit}
-                    
+                onEdit={edit}   
                 />
             )}
-            
             {mode === CREATE && (
              <Form interviewers={props.interviewers} onSave={save} onCancel={back}/>
             )}

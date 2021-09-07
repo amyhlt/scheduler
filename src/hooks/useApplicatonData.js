@@ -33,7 +33,7 @@ export default function useApplicatonData(){
           console.log(appointment);
   
           if (appointment.type === "SET_INTERVIEW") {
-            dispatch({ type: "updateInterview", id: appointment.id, interview: appointment.interview});
+            dispatch({ type: "setInterview", id: appointment.id, interview: appointment.interview});
           }
         };
       });
