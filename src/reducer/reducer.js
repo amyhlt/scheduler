@@ -46,10 +46,7 @@
           }
     }
   };
- 
  export default function reducer(state, action){
-     
     return reducers[action.type](state, action) || state;
-      
     }      
  

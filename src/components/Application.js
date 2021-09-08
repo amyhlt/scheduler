@@ -18,7 +18,7 @@ export default function Application() {
   const schedule = appointments.map((appointment) => {  
   const interview = getInterview(state, appointment.interview);
     let interviewers = getInterviewersForDay(state, state.day)
-   
+    
       if(interview){
         return (
           <Appointment
@@ -31,10 +31,11 @@ export default function Application() {
             cancelInterview={cancelInterview}
             bookInterview={bookInterview}
           />
+          
         );
       } else{
-  
         return (
+          
           <Appointment
           key={appointment.id}
           id={appointment.id}
@@ -43,8 +44,12 @@ export default function Application() {
           interviewers={interviewers}
           bookInterview={bookInterview}
           />
+          
+          
         );
+        
       }
+      
   });
   return (
     <main className="layout">
@@ -70,7 +75,8 @@ export default function Application() {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule"> {schedule}</section>
+      <section className="schedule"> {schedule}
+      <Appointment className="appointment:last-of-type__add" id="last" time="" /></section>
     </main>
   );
 }
