@@ -1,4 +1,11 @@
 import { useState } from "react";
+/**
+ * 
+ * @param {*} initial 
+ * @returns 
+ * keeping track of mode and history
+ * [mode,transition,back]
+ */
 export default function useVisualMode(initial) {
     const [mode, setMode] = useState(initial);
     const [history, setHistory] = useState([initial]);

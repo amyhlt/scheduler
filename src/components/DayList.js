@@ -1,5 +1,10 @@
 import React from "react";
 import DayListItem from "./DayListItem";
+/**
+ * 
+ * @param {*} props 
+ * @returns list of day with day name and the remaining of spots
+ */
 export default function DayList(props){
     
     const listItems =props.days.map(day=>(
@@ -11,7 +16,6 @@ export default function DayList(props){
          setDay={props.setDay} /> 
          
      )) ;
-    
   return (
       <ul>
       {listItems}

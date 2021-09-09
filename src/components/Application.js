@@ -4,7 +4,10 @@ import DayList from "./DayList"
 import { getAppointmentsForDay, getInterview,getInterviewersForDay } from "helpers/selectors";
 import Appointment from "components/Appointment/index";
 import useApplicationData from "hooks/useApplicatonData";
-
+/**
+ * 
+ * @returns homepage with sidebar(daylist) and main section(appointment lists)
+ */
 export default function Application() {
   
   const {
@@ -17,8 +20,7 @@ export default function Application() {
   const appointments = getAppointmentsForDay(state, state.day);
   const schedule = appointments.map((appointment) => {  
   const interview = getInterview(state, appointment.interview);
-    let interviewers = getInterviewersForDay(state, state.day)
-    
+  let interviewers = getInterviewersForDay(state, state.day)
       if(interview){
         return (
           <Appointment
@@ -30,8 +32,7 @@ export default function Application() {
             interviewers={interviewers}
             cancelInterview={cancelInterview}
             bookInterview={bookInterview}
-          />
-          
+          /> 
         );
       } else{
         return (
@@ -43,13 +44,9 @@ export default function Application() {
           interview={null}
           interviewers={interviewers}
           bookInterview={bookInterview}
-          />
-          
-          
+          /> 
         );
-        
-      }
-      
+      } 
   });
   return (
     <main className="layout">
@@ -63,7 +60,7 @@ export default function Application() {
         <nav className="sidebar__menu">
           <DayList
             days={state.days}
-            propDay={state.day}
+            day={state.day}
             setDay={day => {
               setDay(day);
             }}

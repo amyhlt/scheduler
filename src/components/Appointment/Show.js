@@ -1,5 +1,10 @@
 import React from "react";
 import 'components/Appointment/styles.scss';
+/**
+ * 
+ * @param {*} props 
+ * @returns an appointment with student's name,interviewer's name and Edit and delete button
+ */
 export default function Show(props){
   
     return (
@@ -11,8 +16,7 @@ export default function Show(props){
             <h3 className="text--regular">{props.interviewer.name}</h3>
             <img src={props.interviewer.avatar} alt="props.interviewer.name"></img>
             <div>
-            </div>
-              
+            </div> 
           </section>
         </section>
         <section className="appointment__card-right">

@@ -1,5 +1,11 @@
 import React from "react";
 import 'components/Appointment/styles.scss';
+/**
+ * 
+ * @param {*} props 
+ * @returns error massages 
+ * when save and delete an appointment
+ */
 export default function Error(props){
     return (
         <main className="appointment__card appointment__card--error">
@@ -11,7 +17,7 @@ export default function Error(props){
           className="appointment__error-close"
           src="images/close.png"
           alt="Close"
-          onClose={props.onClose}
+          onClick={props.onClose}
         />
       </main>
     );

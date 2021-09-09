@@ -1,6 +1,12 @@
 import React from "react";
 import 'components/Appointment/styles.scss';
 import Button from "components/Button";
+/**
+ * 
+ * @param {*} props 
+ * @returns a confirmation alert. 
+ * After clicking the delete button, users need to confirm to delete it
+ */
 export default function Confirm(props) {
     function cancel(){
         props.onConfirm();

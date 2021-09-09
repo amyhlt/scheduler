@@ -1,4 +1,6 @@
-
+/**
+ * state setting
+ */
  const reducers = {
     setDay(state, action) {
         return { ...state, day: action.value };
@@ -15,9 +17,10 @@
         let thatDay = state.days.find(
             day => day.appointments.includes(action.id)
           );
-    
           if(action.interview){
+            if(thatDay.spots!== 0){
               thatDay.spots -= 1;
+            }
             const appointment = {
               ...state.appointments[action.id],
               interview: { ...action.interview }
