@@ -36,21 +36,27 @@ export default function useApplicatonData(){
         };
         socket.onmessage = appointmentData => {
           const appointment = JSON.parse(appointmentData.data);
-          
-  
           if (appointment.type === "SET_INTERVIEW") {
-            dispatch({ type: "setInterview", id: appointment.id, interview: appointment.interview});
           }
         };
       });
     }, []);
       
-    function bookInterview(id, interview) {
+    function bookInterview(id, interview,mode) {
+      
         return axios.put(`/api/appointments/${id}`, { interview }).then(res => { 
+          
+          if(mode === "CREATE") {
+            dispatch({ type: "createInterview", id: id, interview: interview});
+          }
+          if(mode === "EDIT") {
+            dispatch({ type: "updateInterview", id: id, interview: interview});
+          }
        }); 
      }
      function cancelInterview(id){
         return axios.delete(`/api/appointments/${id}`).then(res => {
+         dispatch({ type: "cancelInterview",id: id});
         });
       }
       

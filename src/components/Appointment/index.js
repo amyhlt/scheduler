@@ -45,8 +45,8 @@ export default function Appointment(props) {
      * @param {*} interviewer 
      * click save button to book an interview
      */
-    function save(name, interviewer) {
-        
+    function save(name, interviewer,mode) {
+    
       if(!interviewer){
           transition(ERROR_SAVE, true);
       } else {
@@ -56,7 +56,7 @@ export default function Appointment(props) {
           }
          transition(SAVING);
          props
-         .bookInterview(props.id, interview)
+         .bookInterview(props.id, interview,mode)
         .then(() => transition(SHOW))
         .catch((error) =>  {
           console.log("Saving error:", error);
@@ -108,13 +108,13 @@ export default function Appointment(props) {
                 />
             )}
             {mode === CREATE && (
-               <Form interviewers={props.interviewers} onSave={save} onCancel={back}/>
+               <Form interviewers={props.interviewers} mode="CREATE" onSave={save} onCancel={back}/>
             )}
             {mode === SAVING && <Status message="Saving" />}
             {mode === DELETING && <Status message="Deleting" />}
             {mode === CONFIRM  && <Confirm onConfirm={cancel} onCancel={back} message="Are you sure you would like to delete?"/>}
             {mode === EDIT && <Form name={props.student} interviewers={props.interviewers} interviewer={props.interview}
-                               onSave={save} onCancel={back}/>}
+                            mode="EDIT"   onSave={save} onCancel={back}/>}
             {mode === ERROR_SAVE && (
                             <Error message="You must select an interviewer" onClose={errorClose} />
                              )}

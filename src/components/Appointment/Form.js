@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import 'components/Appointment/styles.scss';
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
+
 /**
  * 
  * @param {*} props 
@@ -11,8 +12,9 @@ import Button from "components/Button";
 export default function Form(props) {
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [mode,setMode] = useState(props.mode || null);
   const [error, setError] = useState("");
-
+ 
   function reset() {
     setName("");
     setInterviewer(null);
@@ -27,7 +29,7 @@ export default function Form(props) {
       return;
     }
     setError("");
-    props.onSave(name, interviewer);
+    props.onSave(name, interviewer,mode);
   }
   return (
     <main className="appointment__card appointment__card--create">
@@ -41,6 +43,7 @@ export default function Form(props) {
             placeholder="Enter Student Name"
             onChange={event => setName(event.target.value)}
             data-testid="student-name-input"
+            mode={mode}
           />
         </form>
         <label className="appointment__validation">{error}</label>
