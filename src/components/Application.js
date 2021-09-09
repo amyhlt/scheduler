@@ -14,9 +14,12 @@ export default function Application() {
     state,
     setDay,
     bookInterview,
-    cancelInterview
+    cancelInterview,
+   
   } = useApplicationData();
- 
+
+  
+  
   const appointments = getAppointmentsForDay(state, state.day);
   const schedule = appointments.map((appointment) => {  
   const interview = getInterview(state, appointment.interview);
@@ -32,9 +35,11 @@ export default function Application() {
             interviewers={interviewers}
             cancelInterview={cancelInterview}
             bookInterview={bookInterview}
+            
           /> 
         );
       } else{
+       
         return (
           
           <Appointment
@@ -44,6 +49,7 @@ export default function Application() {
           interview={null}
           interviewers={interviewers}
           bookInterview={bookInterview}
+         
           /> 
         );
       } 
@@ -59,7 +65,7 @@ export default function Application() {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
           <DayList
-            days={state.days}
+           days={state.days}
             day={state.day}
             setDay={day => {
               setDay(day);

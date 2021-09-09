@@ -47,8 +47,10 @@ export default function Appointment(props) {
      */
     function save(name, interviewer) {
         
-     try{
-        const interview = {
+      if(!interviewer){
+          transition(ERROR_SAVE, true);
+      } else {
+          const interview = {
             student: name,
             interviewer:interviewer.id
           }
@@ -56,12 +58,14 @@ export default function Appointment(props) {
          props
          .bookInterview(props.id, interview)
         .then(() => transition(SHOW))
-        .catch(error => transition(ERROR_SAVE, true));
+        .catch((error) =>  {
+          console.log("Saving error:", error);
+        });
       }
-     catch{
-         transition(ERROR_SAVE, true);
-      }
+        
     }
+     
+    
     /**
      * 
      * @param {*} id 

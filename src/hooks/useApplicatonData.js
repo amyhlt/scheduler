@@ -36,7 +36,7 @@ export default function useApplicatonData(){
         };
         socket.onmessage = appointmentData => {
           const appointment = JSON.parse(appointmentData.data);
-          console.log(appointment);
+          
   
           if (appointment.type === "SET_INTERVIEW") {
             dispatch({ type: "setInterview", id: appointment.id, interview: appointment.interview});

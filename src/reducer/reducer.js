@@ -1,6 +1,7 @@
 /**
  * state setting
  */
+ 
  const reducers = {
     setDay(state, action) {
         return { ...state, day: action.value };
@@ -14,6 +15,7 @@
           };
     },
     setInterview(state,action){
+        
         let thatDay = state.days.find(
             day => day.appointments.includes(action.id)
           );
