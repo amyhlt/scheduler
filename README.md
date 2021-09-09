@@ -1,9 +1,9 @@
 # Interview Scheduler
 Interview Scheduler  is a single page application (SPA),built using React.
 ## Final product
-![edit a url](https://github.com/amytang1234/scheduler/blob/master/screenshots/Screen%20Shot%202021-09-09%20at%2000.52.17.png)
-![](https://github.com/amytang1234/scheduler/blob/master/screenshots/Screen%20Shot%202021-09-09%20at%2000.53.10.png)
-![](https://github.com/amytang1234/scheduler/blob/master/screenshots/Screen%20Shot%202021-09-09%20at%2000.55.49.png)
+![NewAppointment](https://github.com/amytang1234/scheduler/blob/master/docs/NewAppointment.png)
+![EditAppointment](https://github.com/amytang1234/scheduler/blob/master/docs/EditAppointment.png)
+![ConfirmDelete](https://github.com/amytang1234/scheduler/blob/master/docs/ConfirmDelete.png)
 ## Dependencies
  - axios
  - classnames
